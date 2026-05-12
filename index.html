@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://myvibrix.vercel.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Vibrix - Your Pharmacy, Reimagined.</title>
+  <meta name="description" content="My Vibrix brings your pharmacy closer than ever. Refill prescriptions, track deliveries, and shop wellness essentials in a secure, beautifully streamlined mobile experience designed around you.">
+  <meta name="keywords" content="pharmacy, prescription, Rx, refill, medication, delivery, OTC, supplements, vitamins, prescriptions, pharmacy app, refill prescriptions, prescription refill, medication management, Over-The-Counter, delivery tracking, health, wellness, healthcare, medicine, vitamin, supplement">
+  <link rel="icon" href="https://myvibrix.vercel.app/assets/Mobile%20Icons/Mobile%20icon%20(512x512).svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="https://myvibrix.vercel.app/assets/Mobile%20Icons/Mobile%20icon%20(512x512).svg">
+  <style>
+    /* ── Fonts ───────────────────────────────────────────── */
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Thin.otf") format("opentype"); font-weight:100; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-ExtraLight.otf") format("opentype"); font-weight:200; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Light.otf") format("opentype"); font-weight:300; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Regular.otf") format("opentype"); font-weight:400; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Medium.otf") format("opentype"); font-weight:500; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-SemiBold.otf") format("opentype"); font-weight:600; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Bold.otf") format("opentype"); font-weight:700; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-ExtraBold.otf") format("opentype"); font-weight:800; font-display:swap; }
+    @font-face { font-family:"Pretendard"; src:url("fonts/Pretendard-Black.otf") format("opentype"); font-weight:900; font-display:swap; }
+
+    /* ── Tokens ──────────────────────────────────────────── */
+    :root {
+      --teal:        #00A6A6;
+      --teal-dark:   #003a3a;
+      --green:       #5CD85C;
+      --navy:        #00274D;
+      --gradient:    linear-gradient(90deg, #00A6A6 0%, #5CD85C 100%);
+      --bg:          #ffffff;
+      --bg-alt:      #f7f7f7;
+      --fg:          #161616;
+      --fg-muted:    #444444;
+      --fg-subtle:   #757575;
+      --border:      #eeeeee;
+      --font:        "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      --container:   1280px;
+      --px:          clamp(20px, 4vw, 64px);
+    }
+
+    /* ── Scroll offset for sticky nav ───────────────────── */
+    #features, #app, #contact { scroll-margin-top: 80px; }
+
+    /* ── Reset ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Helpers ─────────────────────────────────────────── */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--px); }
+
+    .pull {
+      font-weight: inherit;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .eyebrow--light { color: rgba(255,255,255,0.85); }
+
+    /* ════════════════════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════════════════════ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 0;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: saturate(180%) blur(18px);
+      -webkit-backdrop-filter: saturate(180%) blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav__logo img { height: 48px; width: auto; display: block; }
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fg-muted);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════════════════ */
+    .hero { padding: 28px; }
+    .hero__panel {
+      position: relative;
+      background: linear-gradient(110deg, #005050 0%, var(--teal-dark) 52%);
+      border-radius: 32px;
+      padding: 88px 72px 0;
+      overflow: hidden;
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .hero__copy {
+      align-self: center;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .hero__title {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .hero__sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.92);
+      max-width: 46ch;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      width: fit-content;
+    }
+    .hero__badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .hero__phones {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      align-self: end;
+    }
+    .hero__phone {
+      filter: drop-shadow(0 40px 56px rgba(0,0,0,0.55));
+      flex-shrink: 0;
+    }
+    .hero__phone--back {
+      width: 260px;
+      opacity: 0.82;
+      transform: translateX(52px) translateY(24px) rotate(4deg);
+      z-index: 0;
+    }
+    .hero__phone--front {
+      width: 310px;
+      transform: translateX(-28px);
+      z-index: 1;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION HEAD
+    ════════════════════════════════════════════════════════ */
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    .section-head--center { align-items: center; text-align: center; }
+    .section-head__title {
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+    .section-head__sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+      max-width: 58ch;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       FEATURES
+    ════════════════════════════════════════════════════════ */
+    .features { padding: 120px 0; }
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    .feature-card {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-card__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.38);
+    }
+    .feature-card__icon svg { width: 22px; height: 22px; stroke: #fff; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-card__label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .feature-card__title { font-size: clamp(22px, 2vw, 28px); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .feature-card__body { font-size: 15px; line-height: 1.65; color: var(--fg-muted); }
+
+    /* ════════════════════════════════════════════════════════
+       APP SHOWCASE (alternating left/right)
+    ════════════════════════════════════════════════════════ */
+    .showcase { padding: 0 0 120px; }
+    .showcase__intro {
+      padding-bottom: 80px;
+      text-align: center;
+      align-items: center;
+    }
+    .showcase__intro + .showcase-row { border-top: none; }
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .showcase-row:last-child { border-bottom: 1px solid var(--border); }
+    .showcase-row--reverse .showcase-row__img  { order: 1; }
+    .showcase-row--reverse .showcase-row__copy { order: 2; }
+
+    .showcase-row__img {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .showcase-row__img img {
+      height: 560px;
+      width: auto;
+      max-width: none;
+      filter: drop-shadow(0 20px 48px rgba(0,58,58,0.18));
+    }
+    .showcase-row.showcase-row--wide-copy { grid-template-columns: 2fr 3fr; }
+    .showcase-row--wide-copy .showcase-row__copy { max-width: none; }
+    .showcase-row--wide-copy .showcase-row__img { justify-content: center; }
+
+    .showcase-row__copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 480px;
+    }
+    .showcase-row__num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .showcase-row__title {
+      font-size: clamp(30px, 3.2vw, 44px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+    }
+    .showcase-row__body {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--fg-muted);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       CLOSING BAND
+    ════════════════════════════════════════════════════════ */
+    .closing { padding: 0 28px 64px; }
+    .closing__panel {
+      position: relative;
+      background: linear-gradient(110deg, #005050 0%, var(--teal-dark) 55%);
+      border-radius: 32px;
+      padding: 88px 72px;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .closing__title {
+      position: relative;
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
+    .closing__sub {
+      position: relative;
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.90);
+      max-width: 52ch;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════════ */
+    .footer { background: var(--teal-dark); color: #fff; padding: 72px 0 32px; }
+    .footer__inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .footer__brand img { height: auto; width: 200px; margin-bottom: 16px; }
+    .footer__tagline { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.5; }
+    .footer__cols { display: flex; gap: 64px; }
+    .footer__col h6 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .footer__col a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.90);
+    }
+    .footer__logo-bottom {
+      position: relative;
+      margin-top: 24px;
+      overflow: hidden;
+    }
+    .footer__logo-bottom img {
+      display: block;
+      width: 100%;
+      height: auto;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, transparent 88%);
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.40) 0%, transparent 88%);
+    }
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer__legal { display: flex; gap: 20px; }
+
+    /* ════════════════════════════════════════════════════════
+       FADE-UP ENTRANCE
+    ════════════════════════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ════════════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .hero { padding: 16px; }
+      .hero__panel {
+        grid-template-columns: 1fr;
+        padding: 56px 32px 0;
+        border-radius: 24px;
+        min-height: auto;
+      }
+      .hero__copy { padding-bottom: 40px; }
+      .hero__phones { justify-content: center; }
+      .hero__phone--back { display: none; }
+      .hero__phone--front { transform: none; width: 260px; }
+      .features__grid { grid-template-columns: 1fr 1fr; border-left: none; }
+      .feature-card { border-left: 1px solid var(--border); }
+      .showcase-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 56px 0;
+      }
+      .showcase-row--reverse .showcase-row__img  { order: 0; }
+      .showcase-row--reverse .showcase-row__copy { order: 0; }
+      .showcase-row__img img { height: 420px; }
+      .closing__panel { padding: 56px 32px; border-radius: 24px; }
+      .footer__inner { flex-direction: column; }
+      .nav__links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .features__grid { grid-template-columns: 1fr; }
+      .feature-card { border-left: 1px solid var(--border); }
+      .footer__cols { flex-direction: column; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="https://myvibrix.vercel.app/" class="nav__logo" aria-label="My Vibrix">
+        <img src="./Github reference_files/Logo-top.svg" alt="My Vibrix">
+      </a>
+      <div class="nav__links">
+        <a href="https://myvibrix.vercel.app/#features">Features</a>
+        <a href="https://myvibrix.vercel.app/#app">App</a>
+        <a href="https://myvibrix.vercel.app/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ═════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__panel">
+
+      <div class="hero__copy fade-up visible">
+        <div class="eyebrow eyebrow--light">A New Kind of Pharmacy</div>
+        <h1 class="hero__title">
+          Your pharmacy,<br>
+          <span class="pull">in your pocket.</span>
+        </h1>
+        <p class="hero__sub">
+          My Vibrix brings your pharmacy closer than ever, combining convenience and care in one secure, streamlined experience where concierge service meets modern convenience.
+        </p>
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Now available for iOS &amp; Android
+        </div>
+      </div>
+
+      <div class="hero__phones fade-up visible" style="transition-delay:120ms">
+        <img class="hero__phone hero__phone--back" src="./Github reference_files/3.png" alt="Wellness shop screen">
+        <img class="hero__phone hero__phone--front" src="./Github reference_files/5.png" alt="Active prescriptions screen">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES ═════════════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-head section-head--center fade-up visible">
+        <div class="eyebrow">What My Vibrix Does</div>
+        <h2 class="section-head__title">Wellness care, <span class="pull">made effortless.</span></h2>
+        <p class="section-head__sub">
+          Everything you need to manage your prescriptions and wellness, designed to work beautifully in a few taps.
+        </p>
+      </div>
+
+      <div class="features__grid">
+
+        <article class="feature-card fade-up visible" style="transition-delay:0ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"></path><rect x="9" y="3" width="6" height="4" rx="1"></rect><path d="M9 12h6M9 16h4"></path></svg>
+          </div>
+          <div class="feature-card__label">Rx Management</div>
+          <h3 class="feature-card__title">Personalized prescription management.</h3>
+          <p class="feature-card__body">View and manage all your medications with clarity and ease. Your full prescription history, always at hand.</p>
+        </article>
+
+        <article class="feature-card fade-up visible" style="transition-delay:60ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M12 9v6M9 12h6"></path></svg>
+          </div>
+          <div class="feature-card__label">Effortless Refills</div>
+          <h3 class="feature-card__title">Request Rx renewals in just a few taps.</h3>
+          <p class="feature-card__body">Submitting refills, receiving timely reminders, and staying on schedule has never been simpler.</p>
+        </article>
+
+        <article class="feature-card fade-up visible" style="transition-delay:120ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          </div>
+          <div class="feature-card__label">OTC &amp; Wellness</div>
+          <h3 class="feature-card__title">Curated over-the-counter and wellness shop.</h3>
+          <p class="feature-card__body">Browse and shop over-the-counter medications, supplies, and supplements from our trusted storefront.</p>
+        </article>
+
+        <article class="feature-card fade-up visible" style="transition-delay:0ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"></path></svg>
+          </div>
+          <div class="feature-card__label">Checkout</div>
+          <h3 class="feature-card__title">Check out with confidence.</h3>
+          <p class="feature-card__body">Review items, edit your cart, and place orders through a smooth, considered ordering experience built around you.</p>
+        </article>
+
+        <article class="feature-card fade-up visible" style="transition-delay:60ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
+          <div class="feature-card__label">Timely Fulfillment</div>
+          <h3 class="feature-card__title">Orders processed and delivered with care.</h3>
+          <p class="feature-card__body">Every order is handled promptly and shipped to your door, free, reliable, and right on time.</p>
+        </article>
+
+        <article class="feature-card fade-up visible" style="transition-delay:120ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <div class="feature-card__label">Order Updates</div>
+          <h3 class="feature-card__title">Track your order from confirmation to doorstep.</h3>
+          <p class="feature-card__body">Stay informed at every step, from the moment you place your order to when it arrives at your door.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ APP SHOWCASE ══════════════════════════════════════ -->
+  <section class="showcase" id="app">
+    <div class="container">
+
+      <div class="showcase__intro section-head fade-up visible">
+        <div class="eyebrow">The App</div>
+        <h2 class="section-head__title">Built for real life.<br><span class="pull">Beautifully streamlined.</span></h2>
+        <p class="section-head__sub">A secure, thoughtfully designed mobile experience. Everything you need, nothing you don't.</p>
+      </div>
+
+      <!-- Row 1: copy left, image right -->
+      <div class="showcase-row fade-up visible">
+        <div class="showcase-row__copy">
+          <div class="showcase-row__num">01 / Active Prescriptions</div>
+          <h3 class="showcase-row__title">Always know exactly where your Rx stands.</h3>
+          <p class="showcase-row__body">View every active prescription in one organized list, with refills remaining, days supply, and current pricing clearly displayed. Add to cart or request a renewal without ever leaving the screen.</p>
+        </div>
+        <div class="showcase-row__img">
+          <img src="./Github reference_files/5.png" alt="Active Prescriptions screen">
+        </div>
+      </div>
+
+      <!-- Row 2: image left, copy right -->
+      <div class="showcase-row showcase-row--reverse showcase-row--wide-copy fade-up visible">
+        <div class="showcase-row__img">
+          <img src="./Github reference_files/4.png" alt="Prescription Management screen">
+        </div>
+        <div class="showcase-row__copy">
+          <div class="showcase-row__num">02 / Prescription Management</div>
+          <h3 class="showcase-row__title">Your full prescription history, organized.</h3>
+          <p class="showcase-row__body">Switch between active, inactive, and renewal-needed medications at a glance. Stay ahead of expiring prescriptions so you never run out at the wrong moment.</p>
+        </div>
+      </div>
+
+      <!-- Row 3: copy left, image right -->
+      <div class="showcase-row fade-up visible">
+        <div class="showcase-row__copy">
+          <div class="showcase-row__num">03 / OTC &amp; Wellness Shop</div>
+          <h3 class="showcase-row__title">Shop wellness on your terms.</h3>
+          <p class="showcase-row__body">Browse curated over-the-counter medications, supplements, and health supplies right alongside your prescriptions. Trusted products from trusted brands, delivered straight to your door.</p>
+        </div>
+        <div class="showcase-row__img">
+          <img src="./Github reference_files/3.png" alt="OTC and Wellness Shop screen">
+        </div>
+      </div>
+
+      <!-- Row 4: image left, copy right -->
+      <div class="showcase-row showcase-row--reverse fade-up visible">
+        <div class="showcase-row__img">
+          <img src="./Github reference_files/2.png" alt="Cart and Checkout screen">
+        </div>
+        <div class="showcase-row__copy">
+          <div class="showcase-row__num">04 / Cart &amp; Checkout</div>
+          <h3 class="showcase-row__title">A checkout experience built around you.</h3>
+          <p class="showcase-row__body">Review prescription and OTC items together, see your complete bill summary with discounts applied, and place your order in a few confident taps.</p>
+        </div>
+      </div>
+
+      <!-- Row 5: copy left, image right -->
+      <div class="showcase-row fade-up visible">
+        <div class="showcase-row__copy">
+          <div class="showcase-row__num">05 / Order Confirmation</div>
+          <h3 class="showcase-row__title">Your order, confirmed and cared for.</h3>
+          <p class="showcase-row__body">Every order is confirmed instantly, with a pharmacist available to review your shipment before it leaves. You always know your medications are in good hands.</p>
+        </div>
+        <div class="showcase-row__img">
+          <img src="./Github reference_files/1.png" alt="Order Confirmation screen">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ CLOSING ═══════════════════════════════════════════ -->
+  <section class="closing">
+    <div class="closing__panel fade-up visible">
+      <div class="eyebrow eyebrow--light">A Higher Standard of Pharmacy Care</div>
+      <h2 class="closing__title">
+        Discover your<br><span class="pull">Vibrix Life.</span>
+      </h2>
+      <p class="closing__sub">
+        From managing prescriptions to browsing trusted over-the-counter products, everything is thoughtfully integrated to deliver a smarter, more seamless way to care for your health.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="./Github reference_files/Vibrix-Logo-2C-Gradient.png" alt="Vibrix">
+          <p class="footer__tagline">Wellness care, made effortless.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h6>Pharmacy</h6>
+            <a href="https://myvibrix.vercel.app/#">Our Process</a>
+            <a href="https://www.vibrixpharmacy.com/patients">Patients</a>
+            <a href="https://www.vibrixpharmacy.com/providers">Providers</a>
+          </div>
+          <div class="footer__col">
+            <h6>Company</h6>
+            <a href="https://www.vibrixpharmacy.com/about-vibrix">About</a>
+            <a href="https://www.vibrixpharmacy.com/about-vibrix">Our Team</a>
+          </div>
+          <div class="footer__col">
+            <h6>Support</h6>
+            <a href="https://www.vibrixpharmacy.com/faq">FAQ</a>
+            <a href="https://www.vibrixpharmacy.com/contact">Contact Us</a>
+            <a href="tel:8887098999">(888) 709-8999</a>
+            <a href="mailto:info@vibrixpharmacy.com">info@vibrixpharmacy.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__logo-bottom">
+        <img src="./Github reference_files/Vibrix-Logo-2C-Gradient.png" alt="">
+      </div>
+      <div class="footer__bottom">
+        <div>© <span id="yr">2026</span> Vibrix Pharmacy. All rights reserved.</div>
+        <div class="footer__legal">
+          <a href="https://www.vibrixpharmacy.com/vibrix-privacy-policy">Privacy</a>
+          <a href="https://www.vibrixpharmacy.com/patient-state-information">Patient State Information</a>
+          <a href="https://www.vibrixpharmacy.com/vibrix-terms-and-conditions">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+          observer.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+
+</body></html>
